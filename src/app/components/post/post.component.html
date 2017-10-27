@@ -1,0 +1,37 @@
+<loading-spinner [isLoading]="isLoading"></loading-spinner>
+<mat-card class="card" *ngIf="!isLoading">
+  <mat-card-header>
+    <div mat-card-avatar class="header-image">
+      <img src="{{post.author.image}}" alt="Photo of a Shiba Inu">
+    </div>
+    <mat-card-title>
+      <a [routerLink]="['/post', post.id]">
+        <h3>{{post.name}}</h3>
+      </a>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <strong>{{post.author.name}}</strong> posted at
+      <strong>{{post.date}}</strong>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="row">
+      <div class="col-lg-8">
+        <p>
+          {{post.text}}
+        </p>
+      </div>
+      <div class="col-lg-4">
+        <button mat-mini-fab color="primary" *ngIf="user && user.id === post.author.id" [routerLink]="['/post',post.id,'edit']">
+          <mat-icon>mode_edit</mat-icon>
+        </button>
+        <button mat-mini-fab color="warn" *ngIf="user && user.id === post.author.id" (click)="deletePost()">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <comments [user]="user" [postId]="post.id" [commentsCount]="post.commentsCount"></comments>
+  </mat-card-actions>
+</mat-card>

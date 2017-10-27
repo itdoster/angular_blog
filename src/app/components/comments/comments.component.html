@@ -1,0 +1,77 @@
+<mat-expansion-panel (opened)="loadComments()" class="comments-panel">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <button mat-raised-button color="primary"> {{commentsCount}}
+        <mat-icon>comment</mat-icon>
+      </button>
+    </mat-panel-title>
+    <mat-panel-description>
+      <strong>Comments</strong>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <div class="col-lg-11">
+    <mat-card class="card comment-card" *ngIf="comments.length === 0 && !isLoading">
+      <mat-card-content>
+        <div class="row justify-content-center">
+          <div class="col-3">
+            <h3> No comments</h3>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <div *ngIf="!isLoading">
+      <mat-card class="card comment-card" *ngFor="let comment of comments">
+        <mat-card-header>
+          <div mat-card-avatar class="header-image">
+            <img src="{{comment.author.image}}" alt="Photo of a Shiba Inu">
+          </div>
+          <mat-card-title>
+            <h3>{{comment.author.name}} commented at {{comment.date}}</h3>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-lg-9">
+              <p>
+                {{comment.message}}
+              </p>
+            </div>
+            <div class="col-lg-1">
+              <button mat-mini-fab color="warn" *ngIf="user && user.id === comment.author.id" (click)="deleteComment(comment)">
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <loading-spinner [isLoading]="isLoading"></loading-spinner>
+    <mat-card class="card comment-card" *ngIf="user">
+      <mat-card-header>
+        <div mat-card-avatar class="header-image">
+          <img src="{{user.image}}" alt="Photo of a Shiba Inu">
+        </div>
+        <mat-card-title>
+          <h3>{{user.username}}</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-lg-8">
+            <mat-form-field class="comment-input">
+              <input matInput="text" placeholder="Enter comment" [(ngModel)]='newComment.message' name="newComment.message">
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button (click)="addComment()" color="primary">
+          send
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+</mat-expansion-panel>
