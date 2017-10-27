@@ -1,0 +1,32 @@
+<div class="row">
+  <div *ngIf="!isLoading && !isPreviewMode" class="col-xs-12 col-sm-4 offset-sm-4 col-md-2 offset-md-5 col-lg-2 offset-lg-5">
+    <h2 class="text-center">Post</h2>
+    <form (submit)="save()" class="post-editor-container">
+      <mat-form-field>
+        <input matInput="text" placeholder="Enter title" [(ngModel)]='post.name' name="post.name">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput="text" placeholder="Enter text" [(ngModel)]='post.text' name="post.text"></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput="text" placeholder="Enter tag" [(ngModel)]='post.tag' name="post.tag">
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="primary">
+        <strong *ngIf="isEdit">Save</strong>
+        <strong *ngIf="!isEdit">Create</strong>
+      </button>
+      <button *ngIf="isEdit" mat-raised-button type="button" color="warn" (click)="deletePost()">
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+    </form>
+    <loading-spinner [isLoading]="isLoading"></loading-spinner>
+  </div>
+  <div *ngIf="!isLoading && isEdit" class="col-xs-12 col-sm-6 offset-sm-3 col-md-4 offset-md-4 col-lg-4 offset-lg-4  comments-block">
+    <comments [user]="user" [postId]="post.id" [commentsCount]="post.commentsCount"></comments>
+  </div>
+  <div *ngIf="!isLoading && isPreviewMode" class="col-xs-12 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-8 offset-lg-2">
+    <h2 class="text-center">Post</h2>
+    <post [post]="post" [user]="user"></post>
+    <loading-spinner [isLoading]="isLoading"></loading-spinner>
+  </div>
+</div>
