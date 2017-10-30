@@ -6,7 +6,6 @@ import { AppSettings } from '../constants/app.settings';
 import { AuthModel, Post } from '../shared/models/index';
 import { Subject } from 'rxjs/Subject';
 import { AuthService } from './auth.service';
-import 'rxjs/add/operator/map'
 
 @Injectable()
 export class PostsService {

@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
+import { PageEvent } from '@angular/material';
 import { Subscription } from 'rxjs/Subscription';
 import { PostsService, AlertService, AuthService, CommentsService } from '../../services/index';
 import { Tag, Post } from '../../shared/models/index';
@@ -13,11 +14,11 @@ import { sumBy, take, orderBy, clone, groupBy } from 'lodash';
 })
 
 export class HomeComponent implements OnInit, OnDestroy {
-
+  
   private subscription: Subscription = new Subscription();
-
-  public posts: Post[];
-  public discussedPosts: Post[];
+ 
+  public posts: Post[] = [];
+  public discussedPosts: Post[] = [];
   public popularTags: Tag[] = [];
   public user: User;
   public isLoading: boolean = false;
@@ -27,7 +28,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private postService: PostsService,
     private alertService: AlertService) {
-
   }
 
   public ngOnInit(): void {

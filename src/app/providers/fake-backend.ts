@@ -30,12 +30,12 @@ export let fakeBackendProvider = {
     let posts: Post[] = JSON.parse(localStorage.getItem('posts'));
     if (!posts) {
       posts = [
-        { id: 1, name: 'testPost1', text: 'this post is about', date: "10/30/2017", author: authors[1], commentsCount: comments.filter(coment=>coment.postId == 1).length, tag: 'dog' },
-        { id: 2, name: 'testPost2', text: 'this post is about', date: "10/30/2017", author: authors[0], commentsCount: comments.filter(coment=>coment.postId == 2).length, tag: 'cat' },
-        { id: 3, name: 'testPost3', text: 'this post is about', date: "10/30/2017", author: authors[0], commentsCount: comments.filter(coment=>coment.postId == 3).length, tag: 'life' },
-        { id: 4, name: 'testPost4', text: 'this post is about', date: "10/30/2017", author: authors[1], commentsCount: comments.filter(coment=>coment.postId == 4).length, tag: 'dog' },
-        { id: 5, name: 'testPost5', text: 'this post is about', date: "10/30/2017", author: authors[1], commentsCount: comments.filter(coment=>coment.postId == 5).length, tag: 'usa' },
-        { id: 6, name: 'testPost6', text: 'this post is about', date: "10/30/2017", author: authors[0], commentsCount: comments.filter(coment=>coment.postId == 6).length, tag: 'russia' }
+        { id: 1, name: 'testPost1', text: 'this post is about', date: "10/30/2017", author: authors[1], commentsCount: comments.filter(coment => coment.postId == 1).length, tag: 'dog' },
+        { id: 2, name: 'testPost2', text: 'this post is about', date: "10/30/2017", author: authors[0], commentsCount: comments.filter(coment => coment.postId == 2).length, tag: 'cat' },
+        { id: 3, name: 'testPost3', text: 'this post is about', date: "10/30/2017", author: authors[0], commentsCount: comments.filter(coment => coment.postId == 3).length, tag: 'life' },
+        { id: 4, name: 'testPost4', text: 'this post is about', date: "10/30/2017", author: authors[1], commentsCount: comments.filter(coment => coment.postId == 4).length, tag: 'dog' },
+        { id: 5, name: 'testPost5', text: 'this post is about', date: "10/30/2017", author: authors[1], commentsCount: comments.filter(coment => coment.postId == 5).length, tag: 'usa' },
+        { id: 6, name: 'testPost6', text: 'this post is about', date: "10/30/2017", author: authors[0], commentsCount: comments.filter(coment => coment.postId == 6).length, tag: 'russia' }
       ];
       localStorage.setItem('posts', JSON.stringify(posts))
     }
@@ -79,11 +79,22 @@ export let fakeBackendProvider = {
           connection.mockRespond(new Response(new ResponseOptions({ status: 200, body: posts })));
         }
 
+        // get posts
+        if (connection.request.url.endsWith('/api/stats_by_authors') && connection.request.method === RequestMethod.Get) {
+          let result = {
+            headers: authors.map(p => p.name),
+            data: [350, 500],
+            type: "doughnut"
+          };
+          console.log(result);
+          connection.mockRespond(new Response(new ResponseOptions({ status: 200, body: result })));
+        }
+
         if (connection.request.url.match(/\/api\/posts\/tag\/\w+$/) && connection.request.method === RequestMethod.Get) {
           console.log("asdas");
           let urlParts = connection.request.url.split('/');
           let tag = urlParts[urlParts.length - 1];
-          var res = posts.filter(post=> post.tag === tag);
+          var res = posts.filter(post => post.tag === tag);
           connection.mockRespond(new Response(new ResponseOptions({ status: 200, body: res })));
         }
 
@@ -126,7 +137,7 @@ export let fakeBackendProvider = {
           var index = comments.indexOf(matchedComments[0]);
           comments.splice(comments.indexOf(matchedComments[0]), 1);
           localStorage.removeItem('comments');
-          var post = posts.filter(post=>post.id == comment.postId)[0];          
+          var post = posts.filter(post => post.id == comment.postId)[0];
           post.commentsCount--;
           localStorage.setItem('posts', JSON.stringify(posts))
           localStorage.setItem('comments', JSON.stringify(comments))
@@ -175,7 +186,7 @@ export let fakeBackendProvider = {
             comment.id = Math.floor(Math.random() * 1001);
             comment.date = '10/24/207 16:00';
             comment.author = authors[0];
-            var post = posts.filter(post=>post.id == comment.postId)[0];
+            var post = posts.filter(post => post.id == comment.postId)[0];
             post.commentsCount++;
             comments.push(comment);
             localStorage.setItem('posts', JSON.stringify(posts))

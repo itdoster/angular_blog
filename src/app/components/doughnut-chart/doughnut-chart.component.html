@@ -1,0 +1,4 @@
+<div style="display: block" *ngIf="statistic">
+  <canvas baseChart [data]="statistic.data" [labels]="statistic.headers" [chartType]="statistic.type" (chartHover)="chartHovered($event)"
+    (chartClick)="chartClicked($event)"></canvas>
+</div>

@@ -4,7 +4,7 @@
   <div class="col-lg-3">
     <h1 class="text-center">Popular tags</h1>
     <mat-chip-list class="text-center">
-      <mat-chip color="primary" selected="true" *ngFor="let tag of popularTags" [routerLink]="['/tag',tag.name]">{{tag.name}}</mat-chip>
+      <mat-chip class="tag" color="primary" selected="true" *ngFor="let tag of popularTags" [routerLink]="['/tag',tag.name]">{{tag.name}}</mat-chip>
     </mat-chip-list>
   </div>
   <div class="col-lg-5">

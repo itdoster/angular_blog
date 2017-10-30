@@ -4,14 +4,14 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
-
+import { ChartsModule } from 'ng2-charts';
 //#region ng-material
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatCheckboxModule, MatCardModule, MatIconModule,
   MatChipsModule, MatProgressSpinnerModule, MatToolbarModule, MatSnackBarModule,
-  MatFormFieldModule, MatInputModule, MatExpansionModule, MatDialogModule
+  MatFormFieldModule, MatInputModule, MatExpansionModule, MatDialogModule,MatMenuModule
 } from '@angular/material';
 
 //#endregion ng-material
@@ -25,7 +25,7 @@ import { FooterComponent } from './components/footer/footer.component';
 //#endregion components
 
 //#region services
-import { AlertService, AuthService, PostsService, CommentsService } from './services/index';
+import { AlertService, AuthService, PostsService, CommentsService, StatisticsService } from './services/index';
 import { AuthGuard } from './guards/auth.guard';
 import { fakeBackendProvider } from './providers/fake-backend';
 //#endregion services
@@ -38,6 +38,8 @@ import { CommentsComponent } from './components/comments/comments.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { TagComponent } from './components/tag/tag.component';
+import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-chart.component';
+import { StatsComponent } from './components/stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -52,16 +54,20 @@ import { TagComponent } from './components/tag/tag.component';
     CommentsComponent,
     LoadingSpinnerComponent,
     ConfirmationDialogComponent,
-    TagComponent
+    TagComponent,
+    DoughnutChartComponent,
+    StatsComponent
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     HttpModule,
     FormsModule,
     Routing,
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule, MatCardModule, MatIconModule, MatChipsModule, MatProgressSpinnerModule,
-    MatToolbarModule, MatFormFieldModule, MatInputModule, MatExpansionModule, MatDialogModule, MatSnackBarModule
+    MatToolbarModule, MatFormFieldModule, MatInputModule, MatExpansionModule, MatDialogModule, MatSnackBarModule,
+    MatMenuModule
   ],
   providers: [
     AuthService,
@@ -71,7 +77,8 @@ import { TagComponent } from './components/tag/tag.component';
     fakeBackendProvider,
     MockBackend,
     BaseRequestOptions,
-    CommentsService
+    CommentsService,
+    StatisticsService
   ],
   bootstrap: [AppComponent],
   entryComponents: [ConfirmationDialogComponent]
