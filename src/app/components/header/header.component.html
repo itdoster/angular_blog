@@ -1,17 +1,31 @@
 <mat-toolbar role="header">
-  <button mat-raised-button [routerLink]="['/home']" class="d-none d-sm-block">
+  <button mat-raised-button [routerLink]="['/home']">
     Blog
   </button>
   <span class="header_spacer"></span>
   <div *ngIf="isAuthorized && user" class="row">
-    <button mat-raised-button color="warn" [routerLink]="['/post','create']" class="header_button">
-      <mat-icon>add</mat-icon> post
-    </button>
     <img class="d-none d-sm-block" src="{{user.image}}" />
     <span class="d-none d-sm-block">{{user.username}}</span>
-    <button color="primary" mat-raised-button (click)="logout()"> Logout
-    </button>
   </div>
-  <button color="accent" mat-raised-button [hidden]="isAuthorized" [routerLink]="['/login']"> Login
+  <button mat-icon-button [matMenuTriggerFor]="menu" class="header_menu">
+    <mat-icon>menu</mat-icon>
   </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['/post','create']" *ngIf="isAuthorized && user">
+      <mat-icon>add</mat-icon>
+      <span>Post</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/stats']" *ngIf="isAuthorized && user">
+      <mat-icon>trending_up</mat-icon>
+      <span>Statistics</span>
+    </button>
+    <button mat-menu-item (click)="logout()" *ngIf="isAuthorized && user">
+      <mat-icon>settings_backup_restore</mat-icon>
+      <span>Logout</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/login']" *ngIf="!isAuthorized">
+      <mat-icon>perm_identity</mat-icon>
+      <span>Login</span>
+    </button>
+  </mat-menu>
 </mat-toolbar>

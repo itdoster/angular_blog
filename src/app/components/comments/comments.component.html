@@ -10,15 +10,6 @@
     </mat-panel-description>
   </mat-expansion-panel-header>
   <div class="col-lg-11">
-    <mat-card class="card comment-card" *ngIf="comments.length === 0 && !isLoading">
-      <mat-card-content>
-        <div class="row justify-content-center">
-          <div class="col-3">
-            <h3> No comments</h3>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
     <div *ngIf="!isLoading">
       <mat-card class="card comment-card" *ngFor="let comment of comments">
         <mat-card-header>
@@ -61,7 +52,7 @@
         <div class="row">
           <div class="col-lg-8">
             <mat-form-field class="comment-input">
-              <input matInput="text" placeholder="Enter comment" [(ngModel)]='newComment.message' name="newComment.message">
+              <textarea matInput="text" placeholder="Enter comment" [(ngModel)]='newComment.message' name="newComment.message"></textarea>
             </mat-form-field>
           </div>
         </div>

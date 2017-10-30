@@ -1,14 +1,21 @@
 <loading-spinner [isLoading]="isLoading">
 </loading-spinner>
-<div class="row" [hidden]="isLoading">
+<div class="row home" [hidden]="isLoading">
   <div class="col-lg-3">
-    <h1 class="text-center">Popular tags</h1>
+    <h1 class="text-center">
+      <mat-chip class="tag" color="accent" selected="true">
+        <mat-icon>stars</mat-icon>Popular tags
+      </mat-chip>
+    </h1>
     <mat-chip-list class="text-center">
-      <mat-chip color="primary" selected="true" *ngFor="let tag of popularTags" [routerLink]="['/tag',tag.name]">{{tag.name}}</mat-chip>
+      <mat-chip class="tag" color="primary" selected="true" *ngFor="let tag of popularTags" [routerLink]="['/tag',tag.name]">{{tag.name}}</mat-chip>
     </mat-chip-list>
   </div>
   <div class="col-lg-5">
-    <h1 class="text-center">All posts</h1>
+    <h1 class="text-center">
+      <mat-chip class="tag" color="accent" selected="true">
+        <mat-icon>subject</mat-icon>All posts ({{posts.length}})</mat-chip>
+    </h1>
     <div *ngFor="let post of posts">
       <div class="col-lg-12 col-md-12">
         <post [post]="post" [user]="user"></post>
@@ -16,7 +23,11 @@
     </div>
   </div>
   <div class="col-lg-4">
-    <h1 class="text-center">Popular posts</h1>
+    <h1 class="text-center">
+      <mat-chip class="tag" color="accent" selected="true">
+        <mat-icon>stars</mat-icon>Popular posts
+      </mat-chip>
+    </h1>
     <div *ngFor="let post of discussedPosts">
       <div class="col-lg-12 col-md-12">
         <post [post]="post" [user]="user"></post>

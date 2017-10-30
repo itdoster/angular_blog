@@ -5,6 +5,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PostEditorComponent } from './components/post-editor/post-editor.component';
 import { PostComponent } from './components/post/post.component';
 import { TagComponent } from './components/tag/tag.component';
+import { StatsComponent } from './components/stats/stats.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const appRoutes: Routes = [
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
     { path: 'post/:id', component: PostEditorComponent },
     { path: 'post/:id/edit', component: PostEditorComponent, canActivate: [AuthGuard], data: { isEdit: true } },
     { path: 'tag/:tag', component: TagComponent },
+    { path: 'stats', component: StatsComponent },
     { path: '**', component: NotFoundComponent }
 ];
 
