@@ -1,3 +1,11 @@
 .container-fluid {
     padding-bottom: 20px;
 }
+
+::ng-deep snack-bar-container.success {
+    background: green;
+}
+
+::ng-deep snack-bar-container.error {
+    background: red;
+}

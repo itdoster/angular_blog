@@ -8,9 +8,10 @@ import { BaseRequestOptions } from '@angular/http';
 //#region ng-material
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {  MatButtonModule, MatCheckboxModule, MatCardModule, MatIconModule,
-          MatChipsModule, MatProgressSpinnerModule, MatToolbarModule, MatSnackBarModule,
-          MatFormFieldModule, MatInputModule, MatExpansionModule, MatDialogModule
+import {
+  MatButtonModule, MatCheckboxModule, MatCardModule, MatIconModule,
+  MatChipsModule, MatProgressSpinnerModule, MatToolbarModule, MatSnackBarModule,
+  MatFormFieldModule, MatInputModule, MatExpansionModule, MatDialogModule
 } from '@angular/material';
 
 //#endregion ng-material
@@ -18,7 +19,6 @@ import {  MatButtonModule, MatCheckboxModule, MatCardModule, MatIconModule,
 //#region components
 import { AppComponent } from './app.component';
 import { AuthComponent } from './components/auth/auth.component';
-import { AlertComponent } from './components/alert/alert.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -43,7 +43,6 @@ import { TagComponent } from './components/tag/tag.component';
   declarations: [
     AppComponent,
     AuthComponent,
-    AlertComponent,
     HomeComponent,
     HeaderComponent,
     FooterComponent,
