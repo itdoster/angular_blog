@@ -24,7 +24,7 @@ export class TagComponent implements OnInit {
     private postService: PostsService) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.isLoading = false;
     this.user = this.authService.getUser();
     this.tag = this.route.snapshot.params["tag"];

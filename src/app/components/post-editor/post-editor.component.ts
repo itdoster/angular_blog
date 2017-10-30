@@ -30,14 +30,12 @@ export class PostEditorComponent implements OnInit {
     private alertService: AlertService) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.user = this.authService.getUser();
     this.id = this.route.snapshot.params["id"];
     this.isEdit = this.route.snapshot.data['isEdit'];
     if (this.id) {
-      if (!this.isEdit) {
-        this.isPreviewMode = true;
-      }
+      this.isPreviewMode = !this.isEdit ? true : false;
       this.isLoading = true;
       this.postService.getPostById(this.id).subscribe(
         data => { this.post = data; },

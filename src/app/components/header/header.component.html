@@ -1,15 +1,14 @@
 <mat-toolbar role="header">
-  <button mat-raised-button [routerLink]="['/home']">
+  <button mat-raised-button [routerLink]="['/home']" class="d-none d-sm-block">
     Blog
   </button>
-  <span class="spacer"></span>
-  <button mat-raised-button color="warn" [routerLink]="['/post','create']" class="add-post" *ngIf="isAuthorized">
-    <mat-icon>add</mat-icon> post
-  </button>
-  <div *ngIf="isAuthorized && user">
-    <img src="{{user.image}}" />
-    <span>{{user.username}}</span>
-    
+  <span class="header_spacer"></span>
+  <div *ngIf="isAuthorized && user" class="row">
+    <button mat-raised-button color="warn" [routerLink]="['/post','create']" class="header_button">
+      <mat-icon>add</mat-icon> post
+    </button>
+    <img class="d-none d-sm-block" src="{{user.image}}" />
+    <span class="d-none d-sm-block">{{user.username}}</span>
     <button color="primary" mat-raised-button (click)="logout()"> Logout
     </button>
   </div>
