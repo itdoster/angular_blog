@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 import { PostsService, AlertService, AuthService, CommentsService } from '../../services/index';
 import { Tag, Post } from '../../shared/models/index';
 import { User } from '../../shared/interfaces/index';
 import { sumBy, take, orderBy, clone, groupBy } from 'lodash';
+
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,10 @@ import { sumBy, take, orderBy, clone, groupBy } from 'lodash';
   styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+
+  private subscription: Subscription = new Subscription();
+
   public posts: Post[];
   public discussedPosts: Post[];
   public popularTags: Tag[] = [];
@@ -25,16 +30,23 @@ export class HomeComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (this.authService.isAuthorized()) {
       this.user = this.authService.getUser();
     }
-    this.commentsService.getCommentAction().subscribe(res => {
+    this.subscription.add(this.commentsService.getCommentAction().subscribe(res => {
       this.setDiscussedPosts(this.posts);
       this.setPopularTags(this.posts);
-    });
-    this.postService.getDeletedPost().subscribe(post => this.recalculatePosts(post));
+    }));
+    this.subscription.add(this.postService.getDeletedPost().subscribe(post => {
+      this.recalculatePosts(post);
+    }));
+
     this.loadPosts();
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   private loadPosts(): void {

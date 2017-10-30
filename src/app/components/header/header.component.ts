@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
     private authService: AuthService,
     private router: Router) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.isAuthorized = this.authService.isAuthorized();
     if (this.isAuthorized) {
       this.user = this.authService.getUser();
@@ -27,9 +27,9 @@ export class HeaderComponent implements OnInit {
     })
   }
 
-  private logout() :void {
+  private logout(): void {
     this.authService.logout();
     this.isAuthorized = false;
-    this.router.navigate(['home']);
+    location.reload();
   }
 }

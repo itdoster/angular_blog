@@ -1,11 +1,11 @@
-.icon {
+.header_icon {
     padding: 0 14px;
 }
 
-.spacer {
+.header_spacer {
     flex: 1 1 auto;
 }
 
-.add-post {
+.header_button {
     margin-right: 10px;
 }

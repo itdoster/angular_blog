@@ -1,16 +1,12 @@
-.post-editor-container {
+.post-editor_container {
     display: flex;
     flex-direction: column;
 }
 
-.post-editor-container>* {
+.post-editor_container>* {
     width: 100%;
 }
 
-.auth {
-    margin-top: 10px;
-}
-
-.comments-block {
+.post-editor_comments-block {
     margin-top: 15px;
 }

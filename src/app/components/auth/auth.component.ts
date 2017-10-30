@@ -21,7 +21,7 @@ export class AuthComponent implements OnInit {
     private authService: AuthService,
     private alertService: AlertService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.authModel = new AuthModel();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'home'
   }
