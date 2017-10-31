@@ -4,14 +4,15 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
-import { ChartsModule } from 'ng2-charts';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { DndModule } from 'ng2-dnd';
 //#region ng-material
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatCheckboxModule, MatCardModule, MatIconModule,
   MatChipsModule, MatProgressSpinnerModule, MatToolbarModule, MatSnackBarModule,
-  MatFormFieldModule, MatInputModule, MatExpansionModule, MatDialogModule,MatMenuModule
+  MatFormFieldModule, MatInputModule, MatExpansionModule, MatDialogModule, MatMenuModule
 } from '@angular/material';
 
 //#endregion ng-material
@@ -38,8 +39,9 @@ import { CommentsComponent } from './components/comments/comments.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { TagComponent } from './components/tag/tag.component';
-import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-chart.component';
+import { DoughnutChartComponent } from './components/charts/doughnut-chart/doughnut-chart.component';
 import { StatsComponent } from './components/stats/stats.component';
+import { ChartComponent } from './components/charts/chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -55,8 +57,9 @@ import { StatsComponent } from './components/stats/stats.component';
     LoadingSpinnerComponent,
     ConfirmationDialogComponent,
     TagComponent,
+    StatsComponent,
     DoughnutChartComponent,
-    StatsComponent
+    ChartComponent
   ],
   imports: [
     ChartsModule,
@@ -67,7 +70,8 @@ import { StatsComponent } from './components/stats/stats.component';
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule, MatCardModule, MatIconModule, MatChipsModule, MatProgressSpinnerModule,
     MatToolbarModule, MatFormFieldModule, MatInputModule, MatExpansionModule, MatDialogModule, MatSnackBarModule,
-    MatMenuModule
+    MatMenuModule,
+    DndModule.forRoot(),
   ],
   providers: [
     AuthService,
@@ -81,6 +85,6 @@ import { StatsComponent } from './components/stats/stats.component';
     StatisticsService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmationDialogComponent]
+  entryComponents: [ConfirmationDialogComponent, DoughnutChartComponent]
 })
 export class AppModule { }

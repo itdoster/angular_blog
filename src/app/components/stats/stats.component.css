@@ -1,0 +1,19 @@
+.drop-area {
+    min-height: 300px;
+    border: 1px solid gray;
+    border-style: dotted;
+}
+
+.chart-toolbar {
+    background-color: rgb(149, 223, 241);
+}
+
+.chart-toolbar_img {
+    max-width: 50px;
+}
+
+.remove-chart {
+    position: absolute;
+    right: 0;
+    top: 0;
+}

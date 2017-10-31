@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Statistic } from '../../shared/interfaces/index';
+import { Statistic } from '../../../shared/interfaces/index';
 
 @Component({
   selector: 'doughnut-chart',
@@ -9,7 +9,6 @@ import { Statistic } from '../../shared/interfaces/index';
 
 export class DoughnutChartComponent implements OnInit {
   @Input() statistic: Statistic;
-
 
   constructor() { }
 
