@@ -16,7 +16,7 @@ const appRoutes: Routes = [
     { path: 'post/:id', component: PostEditorComponent },
     { path: 'post/:id/edit', component: PostEditorComponent, canActivate: [AuthGuard], data: { isEdit: true } },
     { path: 'tag/:tag', component: TagComponent },
-    { path: 'stats', component: StatsComponent },
+    { path: 'stats', component: StatsComponent,canActivate: [AuthGuard] },
     { path: '**', component: NotFoundComponent }
 ];
 

@@ -1,6 +1,8 @@
 import { Component, ViewContainerRef, ViewChild, ReflectiveInjector, OnChanges, Input, ComponentFactory, ComponentRef, ComponentFactoryResolver, ChangeDetectorRef, TemplateRef, OnDestroy, OnInit } from '@angular/core';
 import { ChartTypes } from '../../../constants/charts.types';
-import { DoughnutChartComponent } from '../doughnut-chart/doughnut-chart.component'
+import { DoughnutChartComponent } from '../doughnut-chart/doughnut-chart.component';
+import { PieChartComponent } from '../pie-chart/pie-chart.component';
+import { PolarAreaComponent } from '../polar-area/polar-area.component';
 import { Statistic } from '../../../shared/interfaces/index';
 
 @Component({
@@ -33,6 +35,12 @@ export class ChartComponent implements OnInit, OnDestroy {
     switch (this.chartType) {
       case ChartTypes.Doughnut.type: {
         return DoughnutChartComponent;
+      }
+      case ChartTypes.PieChart.type: {
+        return PieChartComponent;
+      }
+      case ChartTypes.PolarArea.type: {
+        return PolarAreaComponent;
       }
       default:
         break

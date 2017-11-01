@@ -11,7 +11,7 @@ import { ChartTypes } from '../../constants/charts.types';
 export class StatsComponent implements OnInit {
   private charts: Array<any> = [];
   private statistic: Statistic;
-  private availableChartTypes: Array<string>;
+  private availableChartTypes: any;
 
   constructor(
     private statService: StatisticsService,
