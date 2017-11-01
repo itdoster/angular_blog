@@ -146,11 +146,12 @@ export let fakeBackendProvider = {
         // edit post by id
         if (connection.request.url.match('/api/posts') && connection.request.method === RequestMethod.Put) {
           if (connection.request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-            let post: Post = JSON.parse(connection.request.getBody());
-            let editpost = posts.filter(post => { return post.id === post.id; });
-            editpost[0].name = post.name;
-            editpost[0].text = post.text;
-            editpost[0].tag = post.tag;
+            let post1: Post = JSON.parse(connection.request.getBody());
+            let editpost = posts.filter(post => { return post.id === post1.id; });
+            console.log(editpost);
+            editpost[0].name = post1.name;
+            editpost[0].text = post1.text;
+            editpost[0].tag = post1.tag;
             localStorage.removeItem('posts');
             localStorage.setItem('posts', JSON.stringify(posts))
             connection.mockRespond(new Response(new ResponseOptions({ status: 200, body: editpost })));
