@@ -83,8 +83,7 @@ export let fakeBackendProvider = {
         if (connection.request.url.endsWith('/api/stats_by_authors') && connection.request.method === RequestMethod.Get) {
           let result = {
             headers: authors.map(p => p.name),
-            data: [350, 500],
-            type: "doughnut"
+            data: [350, 500]
           };
           console.log(result);
           connection.mockRespond(new Response(new ResponseOptions({ status: 200, body: result })));

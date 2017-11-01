@@ -1,7 +1,7 @@
 <div class="row">
   <mat-toolbar class="chart-toolbar">
-    <div *ngFor="let type of availableChartTypes">
-      <img src="../../assets/img/pie-chart.png" class="chart-toolbar_img" dnd-draggable [dragEnabled]="true" [dragData]="type">
+    <div *ngFor="let chart of availableChartTypes">
+      <img [src]="chart.icon" class="chart-toolbar_img" dnd-draggable [dragEnabled]="true" [dragData]="chart.type">
     </div>
   </mat-toolbar>
 </div>

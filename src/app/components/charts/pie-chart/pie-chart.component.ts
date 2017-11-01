@@ -2,16 +2,16 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Statistic } from '../../../shared/interfaces/index';
 
 @Component({
-  selector: 'doughnut-chart',
-  templateUrl: './doughnut-chart.component.html',
-  styleUrls: ['./doughnut-chart.component.css']
+  selector: 'pie-chart',
+  templateUrl: './pie-chart.component.html',
+  styleUrls: ['./pie-chart.component.css']
 })
+export class PieChartComponent implements OnInit {
 
-export class DoughnutChartComponent implements OnInit {
   @Input() statistic: Statistic;
 
-  private type: string = 'doughnut';
-
+  private type: string = 'pie';
+  
   constructor() { }
 
   public ngOnInit(): void {

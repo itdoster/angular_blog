@@ -42,6 +42,8 @@ import { TagComponent } from './components/tag/tag.component';
 import { DoughnutChartComponent } from './components/charts/doughnut-chart/doughnut-chart.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { ChartComponent } from './components/charts/chart/chart.component';
+import { PieChartComponent } from './components/charts/pie-chart/pie-chart.component';
+import { PolarAreaComponent } from './components/charts/polar-area/polar-area.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { ChartComponent } from './components/charts/chart/chart.component';
     TagComponent,
     StatsComponent,
     DoughnutChartComponent,
-    ChartComponent
+    ChartComponent,
+    PieChartComponent,
+    PolarAreaComponent
   ],
   imports: [
     ChartsModule,
@@ -85,6 +89,6 @@ import { ChartComponent } from './components/charts/chart/chart.component';
     StatisticsService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmationDialogComponent, DoughnutChartComponent]
+  entryComponents: [ConfirmationDialogComponent, DoughnutChartComponent, PieChartComponent, PolarAreaComponent]
 })
 export class AppModule { }
