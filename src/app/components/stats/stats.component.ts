@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { StatisticsService, AlertService } from '../../services/index';
-import { Statistic } from '../../shared/interfaces/index';
-import { ChartTypes } from '../../constants/charts.types';
+import {Component, OnInit} from '@angular/core';
+import {StatisticsService, AlertService} from '../../services/index';
+import {Statistic} from '../../shared/interfaces/index';
+import {ChartTypes} from '../../constants/charts.types';
 
 @Component({
   selector: 'app-stats',
@@ -13,9 +13,9 @@ export class StatsComponent implements OnInit {
   private statistic: Statistic;
   private availableChartTypes: any;
 
-  constructor(
-    private statService: StatisticsService,
-    private alertService: AlertService) { }
+  constructor(private statService: StatisticsService,
+              private alertService: AlertService) {
+  }
 
   public ngOnInit(): void {
     this.loadAuthorStats();
@@ -24,9 +24,12 @@ export class StatsComponent implements OnInit {
 
   private loadAuthorStats(): void {
     this.statService.getStatsByAuthors().subscribe(
-      data => { this.statistic = data }),
-      error => { this.alertService.error(error); },
-      () => { }
+      data => {
+        this.statistic = data;
+      },
+      error => {
+        this.alertService.error(error);
+      });
   }
 
   public transferChartSuccess($event: any): void {

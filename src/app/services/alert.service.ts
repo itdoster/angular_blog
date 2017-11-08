@@ -1,17 +1,11 @@
-import { Injectable } from '@angular/core';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
-import { Router, NavigationStart } from '@angular/router';
-import { AlertTypes } from '../constants/alert.types';
-import { Message } from '../shared/models/index';
-
+import {Injectable} from '@angular/core';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 
 @Injectable()
 export class AlertService {
   private config: MatSnackBarConfig;
 
-  constructor(
-    private router: Router,
-    public snackBar: MatSnackBar) {
+  constructor(public snackBar: MatSnackBar) {
     this.config = new MatSnackBarConfig();
     this.config.duration = 1500;
   }

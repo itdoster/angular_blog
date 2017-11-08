@@ -1,31 +1,32 @@
 @import url(https://fonts.googleapis.com/css?family=Alegreya+Sans:300);
+
 footer {
-    margin-top: 60px;
-    position: fixed;
-    left: 0px;
-    bottom: 0px;
-    height: 30px;
-    width: 100%;
-    background: rgba(0,0,0,.10);
+  margin-top: 60px;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  height: 30px;
+  width: 100%;
+  background: rgba(0, 0, 0, .10);
 }
 
 footer_a {
-    color: #999;
-    text-decoration: none;
+  color: #999;
+  text-decoration: none;
 }
 
 footer_a:hover,
 footer_a:focus {
-    color: #aaa;
-    text-decoration: none;
-    border-bottom: 1px dotted #999;
+  color: #aaa;
+  text-decoration: none;
+  border-bottom: 1px dotted #999;
 }
 
 footer_form-control {
-    background-color: #1f2022;
-    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.1);
-    border: none;
-    resize: none;
-    color: #d1d2d2;
-    padding: 0.7em 1em;
+  background-color: #1f2022;
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  border: none;
+  resize: none;
+  color: #d1d2d2;
+  padding: 0.7em 1em;
 }

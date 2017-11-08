@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Statistic } from '../../../shared/interfaces/index';
+import {Component, OnInit, Input} from '@angular/core';
+import {Statistic} from '../../../shared/interfaces/index';
 
 @Component({
   selector: 'app-polar-area',
@@ -10,10 +10,11 @@ export class PolarAreaComponent implements OnInit {
 
   @Input() statistic: Statistic;
 
-  private type: string = 'polarArea';
-  private isShowLegend: boolean = true;
+  private type = 'polarArea';
+  private isShowLegend = true;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

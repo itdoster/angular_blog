@@ -28,7 +28,8 @@
               </p>
             </div>
             <div class="col-lg-1">
-              <button mat-mini-fab color="warn" *ngIf="user && user.id === comment.author.id" (click)="deleteComment(comment)">
+              <button mat-mini-fab color="warn" *ngIf="user && user.id === comment.author.id"
+                      (click)="deleteComment(comment)">
                 <mat-icon>delete_forever</mat-icon>
               </button>
             </div>
@@ -38,7 +39,7 @@
         </mat-card-actions>
       </mat-card>
     </div>
-    <loading-spinner [isLoading]="isLoading"></loading-spinner>
+    <app-loading-spinner [isLoading]="isLoading"></app-loading-spinner>
     <mat-card class="card comment-card" *ngIf="user">
       <mat-card-header>
         <div mat-card-avatar class="header-image">
@@ -52,13 +53,14 @@
         <div class="row">
           <div class="col-lg-8">
             <mat-form-field class="comment-input">
-              <textarea matInput="text" placeholder="Enter comment" [(ngModel)]='newComment.message' name="newComment.message"></textarea>
+              <textarea matInput="text" placeholder="Enter comment" [(ngModel)]='newComment.message' #comment="ngModel" required
+                        name="newComment.message"></textarea>
             </mat-form-field>
           </div>
         </div>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button (click)="addComment()" color="primary">
+        <button mat-raised-button (click)="addComment()" color="primary" [disabled]="comment.invalid">
           send
         </button>
       </mat-card-actions>

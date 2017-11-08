@@ -1,0 +1,19 @@
+<div class="row registration">
+  <div class="col-xs-12 col-sm-4 offset-sm-4 col-md-2 offset-md-5 col-lg-2 offset-lg-5">
+    <h2 class="text-center">Sign up</h2>
+    <form (submit)="register()" class="registration-container">
+      <mat-form-field>
+        <input matInput="text" placeholder="Username" [(ngModel)]='registration.username' name='username' required #username="ngModel">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput="password" type="password" placeholder="Password" [(ngModel)]='registration.password' name='password' required #password="ngModel">
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="primary" [disabled]="username.invalid || password.invalid">
+        Sign up
+      </button>
+    </form>
+    <p>{{error}}</p>
+  </div>
+
+</div>

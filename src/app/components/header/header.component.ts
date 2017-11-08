@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/index';
-import { Router, ActivatedRoute } from '@angular/router';
-import { User } from "../../shared/interfaces/index";
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../services/index';
+import {User} from '../../shared/interfaces/index';
 
 @Component({
   selector: 'app-header',
@@ -12,9 +11,8 @@ export class HeaderComponent implements OnInit {
   private user: User;
   private isAuthorized: boolean;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router) { }
+  constructor(private authService: AuthService) {
+  }
 
   public ngOnInit() {
     this.isAuthorized = this.authService.isAuthorized();
@@ -24,7 +22,7 @@ export class HeaderComponent implements OnInit {
     this.authService.authorizedEvent().subscribe(user => {
       this.user = this.authService.getUser();
       this.isAuthorized = true;
-    })
+    });
   }
 
   private logout(): void {

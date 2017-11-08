@@ -4,3 +4,4 @@ export * from './post.model';
 export * from './comment.model';
 export * from './author.model';
 export * from './message.model';
+export * from './registration.model';

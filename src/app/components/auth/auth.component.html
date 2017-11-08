@@ -3,13 +3,13 @@
     <h2 class="text-center">Authorization</h2>
     <form (submit)="login()" class="auth-container">
       <mat-form-field>
-        <input matInput="text" placeholder="Username" [(ngModel)]='authModel.username' name='username'>
+        <input matInput="text" placeholder="Username" [(ngModel)]='authModel.username' name='username' name='username' required #username="ngModel">
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput="password" placeholder="Password" [(ngModel)]='authModel.password' name='password'>
+        <input matInput="password" type="password" placeholder="Password" [(ngModel)]='authModel.password' name='password' required #password="ngModel">
       </mat-form-field>
-      <button mat-raised-button type="submit" color="primary">
+      <button mat-raised-button type="submit" color="primary" [disabled]="username.invalid || password.invalid">
         Login
       </button>
     </form>

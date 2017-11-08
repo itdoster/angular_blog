@@ -1,5 +1,5 @@
-<loading-spinner [isLoading]="isLoading">
-</loading-spinner>
+<app-loading-spinner [isLoading]="isLoading">
+</app-loading-spinner>
 <div class="row home" [hidden]="isLoading">
   <div class="col-lg-3">
     <h1 class="text-center">
@@ -18,7 +18,7 @@
     </h1>
     <div *ngFor="let post of posts">
       <div class="col-lg-12 col-md-12">
-        <post [post]="post" [user]="user"></post>
+        <app-post [post]="post" [user]="user"></app-post>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
     </h1>
     <div *ngFor="let post of discussedPosts">
       <div class="col-lg-12 col-md-12">
-        <post [post]="post" [user]="user"></post>
+        <app-post [post]="post" [user]="user"></app-post>
       </div>
     </div>
   </div>
