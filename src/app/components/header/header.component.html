@@ -4,7 +4,7 @@
   </button>
   <span class="header_spacer"></span>
   <div *ngIf="isAuthorized && user" class="row">
-    <img class="d-none d-sm-block" src="{{user.image}}" />
+    <img class="d-none d-sm-block" src="{{user.image}}"/>
     <span class="d-none d-sm-block">{{user.username}}</span>
   </div>
   <button mat-icon-button [matMenuTriggerFor]="menu" class="header_menu">
@@ -26,6 +26,10 @@
     <button mat-menu-item [routerLink]="['/login']" *ngIf="!isAuthorized">
       <mat-icon>perm_identity</mat-icon>
       <span>Login</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/signup']" *ngIf="!isAuthorized">
+      <mat-icon>perm_identity</mat-icon>
+      <span>Sign up</span>
     </button>
   </mat-menu>
 </mat-toolbar>

@@ -8,7 +8,7 @@
 <h1 class="text-center">Author posts</h1>
 <div class="row drop-area" (onDropSuccess)="transferChartSuccess($event)" dnd-droppable>
   <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3" *ngFor="let chartType of charts">
-    <chart [chartType]="chartType" [data]="statistic"></chart>
+    <app-chart [chartType]="chartType" [data]="statistic"></app-chart>
     <button mat-icon-button color="warn" (click)="removeChart(chartType)" class="remove-chart">
       <mat-icon>delete_forever</mat-icon>
     </button>

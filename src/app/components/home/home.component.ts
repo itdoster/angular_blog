@@ -1,10 +1,9 @@
-import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
-import { PageEvent } from '@angular/material';
-import { Subscription } from 'rxjs/Subscription';
-import { PostsService, AlertService, AuthService, CommentsService } from '../../services/index';
-import { Tag, Post } from '../../shared/models/index';
-import { User } from '../../shared/interfaces/index';
-import { sumBy, take, orderBy, clone, groupBy } from 'lodash';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Subscription} from 'rxjs/Subscription';
+import {PostsService, AlertService, AuthService, CommentsService} from '../../services/index';
+import {Tag, Post} from '../../shared/models/index';
+import {User} from '../../shared/interfaces/index';
+import {sumBy, take, orderBy, clone} from 'lodash';
 
 
 @Component({
@@ -14,20 +13,17 @@ import { sumBy, take, orderBy, clone, groupBy } from 'lodash';
 })
 
 export class HomeComponent implements OnInit, OnDestroy {
-  
   private subscription: Subscription = new Subscription();
- 
   public posts: Post[] = [];
   public discussedPosts: Post[] = [];
   public popularTags: Tag[] = [];
   public user: User;
-  public isLoading: boolean = false;
+  public isLoading = false;
 
-  constructor(
-    private commentsService: CommentsService,
-    private authService: AuthService,
-    private postService: PostsService,
-    private alertService: AlertService) {
+  constructor(private commentsService: CommentsService,
+              private authService: AuthService,
+              private postService: PostsService,
+              private alertService: AlertService) {
   }
 
   public ngOnInit(): void {
@@ -38,8 +34,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.setDiscussedPosts(this.posts);
       this.setPopularTags(this.posts);
     }));
-    this.subscription.add(this.postService.getDeletedPost().subscribe(post => {
-      this.recalculatePosts(post);
+    this.subscription.add(this.postService.getDeletedPost().subscribe(p => {
+      this.recalculatePosts(p);
     }));
 
     this.loadPosts();
@@ -57,27 +53,37 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.setDiscussedPosts(this.posts);
         this.setPopularTags(this.posts);
       },
-      error => { this.alertService.error(error); },
-      () => { this.isLoading = false; })
+      error => {
+        this.alertService.error(error);
+      },
+      () => {
+        this.isLoading = false;
+      });
   }
 
   private setDiscussedPosts(posts: Post[]): void {
-    this.discussedPosts = take(orderBy(posts, post => post.commentsCount, ['desc']), 5);
+    this.discussedPosts = take(orderBy(posts, p => p.commentsCount, ['desc']), 5);
   }
 
   private setPopularTags(postsClone: Post[]): void {
-    var tags = [];
-    var groupedPosts = groupBy(postsClone, post => post.tag);
-    Object.keys(groupedPosts).forEach(tag => {
-      var count = sumBy(groupedPosts[tag], post => post.commentsCount);
+    const tags = [];
+    const allTags = new Set();
+    postsClone.forEach(p => {
+      p.tags.forEach(tag => {
+        allTags.add(tag);
+      });
+    });
+    allTags.forEach(tag => {
+      const postWithTag = postsClone.filter(p => p.tags.includes(tag));
+      const count = sumBy(postWithTag, p => p.commentsCount);
       tags.push(new Tag(tag, count));
-    })
+    });
     this.popularTags = take(orderBy(tags, tag => tag.count, ['desc']), 5);
   }
 
-  private recalculatePosts(post: Post): void {
-    this.posts.splice(this.posts.indexOf(post), 1);
-    var clonedPosts = clone(this.posts);
+  private recalculatePosts(changed_post: Post): void {
+    this.posts.splice(this.posts.indexOf(changed_post), 1);
+    const clonedPosts = clone(this.posts);
     this.setDiscussedPosts(clonedPosts);
     this.setPopularTags(clonedPosts);
   }

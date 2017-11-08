@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Comment, Post } from '../../shared/models/index';
-import { User } from '../../shared/interfaces/user.interface';
-import { CommentsService, AuthService, AlertService } from '../../services/index';
+import {Component, OnInit, Input} from '@angular/core';
+import {Comment} from '../../shared/models/index';
+import {User} from '../../shared/interfaces/user.interface';
+import {CommentsService, AuthService, AlertService} from '../../services/index';
 
 @Component({
-  selector: 'comments',
+  selector: 'app-comments',
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.css']
 })
@@ -19,11 +19,9 @@ export class CommentsComponent implements OnInit {
   private isAuthorized: boolean;
   private isLoading: boolean;
 
-  constructor(
-    private alertService: AlertService,
-    private commentsService: CommentsService,
-    private authService: AuthService
-  ) {
+  constructor(private alertService: AlertService,
+              private commentsService: CommentsService,
+              private authService: AuthService) {
     this.newComment = new Comment();
     this.comments = [];
   }
@@ -38,22 +36,26 @@ export class CommentsComponent implements OnInit {
       data => {
         this.comments.splice(this.comments.indexOf(comment), 1);
         this.commentsService.callChangeEvent();
-        this.alertService.success("comment was deleted");
+        this.alertService.success('comment was deleted');
       },
-      error => { this.alertService.error(error); }
-    )
+      error => {
+        this.alertService.error(error);
+      }
+    );
   }
 
   private addComment(): void {
     this.commentsService.addComment(this.newComment).subscribe(
       data => {
-        this.newComment.message = "";
+        this.newComment.message = '';
         this.comments.push(data);
         this.commentsService.callChangeEvent();
-        this.alertService.success("comment was added");
+        this.alertService.success('comment was added');
       },
-      error => { this.alertService.error(error); }
-    )
+      error => {
+        this.alertService.error(error);
+      }
+    );
   }
 
   private loadComments(): void {
@@ -63,9 +65,13 @@ export class CommentsComponent implements OnInit {
         data => {
           this.comments = data;
         },
-        error => { this.alertService.error(error); },
-        () => { this.isLoading = false; }
-      )
+        error => {
+          this.alertService.error(error);
+        },
+        () => {
+          this.isLoading = false;
+        }
+      );
     }
   }
 }

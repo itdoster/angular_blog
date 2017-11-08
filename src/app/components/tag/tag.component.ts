@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '../../shared/interfaces/index';
-import { PostsService, AlertService, AuthService } from '../../services/index';
-import { Post } from '../../shared/models/index';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {User} from '../../shared/interfaces/index';
+import {PostsService, AlertService, AuthService} from '../../services/index';
+import {Post} from '../../shared/models/index';
 
 @Component({
   selector: 'app-tag',
@@ -16,18 +16,16 @@ export class TagComponent implements OnInit {
   private tag: string;
   private isLoading: boolean;
 
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-    private alertService: AlertService,
-    private route: ActivatedRoute,
-    private postService: PostsService) {
+  constructor(private authService: AuthService,
+              private alertService: AlertService,
+              private route: ActivatedRoute,
+              private postService: PostsService) {
   }
 
   public ngOnInit(): void {
     this.isLoading = false;
     this.user = this.authService.getUser();
-    this.tag = this.route.snapshot.params["tag"];
+    this.tag = this.route.snapshot.params['tag'];
     if (this.tag) {
       this.loadPostsByTag();
     }
@@ -36,10 +34,16 @@ export class TagComponent implements OnInit {
   private loadPostsByTag(): void {
     this.isLoading = true;
     this.postService.getPostsByTag(this.tag).subscribe(
-      posts => { this.posts = posts; },
-      error => { this.alertService.error(error); },
-      () => { this.isLoading = false; }
-    )
+      posts => {
+        this.posts = posts;
+      },
+      error => {
+        this.alertService.error(error);
+      },
+      () => {
+        this.isLoading = false;
+      }
+    );
   }
 
 }

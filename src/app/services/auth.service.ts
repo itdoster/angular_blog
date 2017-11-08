@@ -1,23 +1,32 @@
-import { Injectable } from '@angular/core';
-import { Http, Headers, Response, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { AppSettings } from '../constants/app.settings';
-import { AuthModel } from '../shared/models/auth.model';
-import { User } from '../shared/interfaces/user.interface';
-import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/map'
+import {Injectable} from '@angular/core';
+import {Http, Headers, Response, RequestOptions} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import {AppSettings} from '../constants/app.settings';
+import {AuthModel, RegistrationModel} from '../shared/models/index';
+import {User} from '../shared/interfaces/user.interface';
+import {Subject} from 'rxjs/Subject';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
 
   public subject = new Subject<any>();
 
-  constructor(public http: Http) { }
+  constructor(public http: Http) {
+  }
 
   public authorize(loginModel: AuthModel) {
     return this.http.post(AppSettings.API_ENDPOINT + 'authenticate', loginModel)
       .map((response: Response) => {
-        let user: User = response.json();
+        const user: User = response.json();
+        this.saveLoggedUser(user);
+      });
+  }
+
+  public register(registrationModel: RegistrationModel) {
+    return this.http.post(AppSettings.API_ENDPOINT + 'users/register', registrationModel)
+      .map((response: Response) => {
+        const user: User = response.json();
         this.saveLoggedUser(user);
       });
   }
@@ -34,7 +43,7 @@ export class AuthService {
   }
 
   public getUser(): User {
-    const user: User = JSON.parse(localStorage.getItem('user'))
+    const user: User = JSON.parse(localStorage.getItem('user'));
     return user;
   }
 
@@ -52,10 +61,10 @@ export class AuthService {
   }
 
   public jwt(): RequestOptions {
-    let token = this.getToken();
+    const token = this.getToken();
     if (token) {
-      let headers = new Headers({ 'Authorization': 'Bearer ' + token });
-      return new RequestOptions({ headers: headers });
+      const headers = new Headers({'Authorization': 'Bearer ' + token});
+      return new RequestOptions({headers: headers});
     }
   }
 

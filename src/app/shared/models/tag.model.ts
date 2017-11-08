@@ -1,9 +1,9 @@
 export class Tag {
-    name: string;
-    count: number;
+  name: string;
+  count: number;
 
-    constructor(name: string, count: number) {
-        this.name = name;
-        this.count = count;
-    }
+  constructor(name: string, count: number) {
+    this.name = name;
+    this.count = count;
+  }
 }

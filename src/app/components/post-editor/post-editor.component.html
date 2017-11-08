@@ -1,17 +1,41 @@
 <div class="row">
-  <div *ngIf="!isLoading && !isPreviewMode" class="col-xs-12 col-sm-4 offset-sm-4 col-md-2 offset-md-5 col-lg-2 offset-lg-5">
+  <div *ngIf="!isLoading && !isPreviewMode"
+       class="col-xs-12 col-sm-4 offset-sm-4 col-md-2 offset-md-5 col-lg-2 offset-lg-5">
     <h2 class="text-center">Post</h2>
     <form (submit)="save()" class="post-editor_container">
       <mat-form-field>
-        <input matInput="text" placeholder="Enter title" [(ngModel)]='post.name' name="post.name">
+        <input matInput="text" required placeholder="Enter title" [(ngModel)]='post.name' name="post.name"
+               #name="ngModel">
       </mat-form-field>
       <mat-form-field>
-        <textarea matInput="text" placeholder="Enter text" [(ngModel)]='post.text' name="post.text"></textarea>
+        <textarea matInput="text" required placeholder="Enter text" [(ngModel)]='post.text' name="post.text"
+                  #text="ngModel"></textarea>
       </mat-form-field>
-      <mat-form-field>
-        <input matInput="text" placeholder="Enter tag" [(ngModel)]='post.tag' name="post.tag">
-      </mat-form-field>
-      <button mat-raised-button type="submit" color="primary">
+      <div class="row">
+        <div class="col-9">
+          <mat-form-field>
+            <input matInput="text" required placeholder="Enter tag" [(ngModel)]='tag' name="tag">
+          </mat-form-field>
+        </div>
+        <div class="col-1">
+          <button mat-raised-button type="button" color="primary" (click)="addTag(tag)">
+            <mat-icon>control_point</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <h1>Tags:</h1>
+      <div *ngFor="let tag of post.tags" class="row">
+        <div class="col-6">
+          <h2>{{tag}}</h2>
+        </div>
+        <div class="col-6">
+          <button mat-raised-button type="button" color="warn" (click)="removeTag(tag)">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </div>
+      </div>
+      <button mat-raised-button type="submit" color="primary" [disabled]="name.invalid || text.invalid">
         <strong *ngIf="isEdit">Save</strong>
         <strong *ngIf="!isEdit">Create</strong>
       </button>
@@ -19,14 +43,16 @@
         <mat-icon>delete_forever</mat-icon>
       </button>
     </form>
-    <loading-spinner [isLoading]="isLoading"></loading-spinner>
+    <app-loading-spinner [isLoading]="isLoading"></app-loading-spinner>
   </div>
-  <div *ngIf="!isLoading && isEdit" class="col-xs-12 col-sm-6 offset-sm-3 col-md-4 offset-md-4 col-lg-4 offset-lg-4 post-editor_comments-block">
-    <comments [user]="user" [postId]="post.id" [commentsCount]="post.commentsCount"></comments>
+  <div *ngIf="!isLoading && isEdit"
+       class="col-xs-12 col-sm-6 offset-sm-3 col-md-4 offset-md-4 col-lg-4 offset-lg-4 post-editor_comments-block">
+    <app-comments [user]="user" [postId]="post.id" [commentsCount]="post.commentsCount"></app-comments>
   </div>
-  <div *ngIf="!isLoading && isPreviewMode" class="col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3">
+  <div *ngIf="!isLoading && isPreviewMode"
+       class="col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3">
     <h2 class="text-center">Post</h2>
-    <post [post]="post" [user]="user"></post>
-    <loading-spinner [isLoading]="isLoading"></loading-spinner>
+    <app-post [post]="post" [user]="user"></app-post>
+    <app-loading-spinner [isLoading]="isLoading"></app-loading-spinner>
   </div>
 </div>

@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Statistic } from '../../../shared/interfaces/index';
+import {Component, OnInit, Input} from '@angular/core';
+import {Statistic} from '../../../shared/interfaces/index';
 
 @Component({
-  selector: 'doughnut-chart',
+  selector: 'app-doughnut-chart',
   templateUrl: './doughnut-chart.component.html',
   styleUrls: ['./doughnut-chart.component.css']
 })
@@ -10,9 +10,10 @@ import { Statistic } from '../../../shared/interfaces/index';
 export class DoughnutChartComponent implements OnInit {
   @Input() statistic: Statistic;
 
-  private type: string = 'doughnut';
+  private type = 'doughnut';
 
-  constructor() { }
+  constructor() {
+  }
 
   public ngOnInit(): void {
   }

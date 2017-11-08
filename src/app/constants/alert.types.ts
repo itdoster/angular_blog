@@ -1,4 +1,4 @@
 export class AlertTypes {
-    public static Success: string = 'success';
-    public static Error: string = 'error';
+  public static Success = 'success';
+  public static Error = 'error';
 }

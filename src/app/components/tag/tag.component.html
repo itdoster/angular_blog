@@ -1,11 +1,11 @@
-<loading-spinner [isLoading]="isLoading">
-</loading-spinner>
+<app-loading-spinner [isLoading]="isLoading">
+</app-loading-spinner>
 <div class="row" [hidden]="isLoading">
   <div class="col-6 offset-3">
     <h1 class="text-center"> {{tag}} posts</h1>
     <div *ngFor="let post of posts">
       <div class="col-lg-12 col-md-12">
-        <post [post]="post" [user]="user"></post>
+        <app-post [post]="post" [user]="user"></app-post>
       </div>
     </div>
   </div>
